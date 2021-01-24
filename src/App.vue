@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <Candy/>
+      <Room roomID="CANDY"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Room from "@/components/Room";
+import Candy from "@/components/Candy";
+ // import io from "socket.io-client"
+ // var socket = io.connect("http://localhost:3000");
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data(){
+    return{
+      time: 0
+    }
+  },
+  components:{
+      Room,
+      Candy
+  },
+  methods:{
+
+  },
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+body{
+  background-color: #A0E7E5;
+  font-family: 'Roboto', sans-serif;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
