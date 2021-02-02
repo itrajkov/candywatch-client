@@ -1,30 +1,23 @@
 <template>
   <div id="app">
-      <Candy/>
-      <Room roomID="CANDY"/>
+      <Candy id="candy"/>
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Room from "@/components/Room";
 import Candy from "@/components/Candy";
- // import io from "socket.io-client"
- // var socket = io.connect("http://localhost:3000");
-export default {
+ export default {
   name: 'App',
   data(){
     return{
-      time: 0
     }
   },
   components:{
-      Room,
       Candy
   },
-  methods:{
-
-  },
 }
+
 </script>
 
 <style>
@@ -40,6 +33,10 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 10px;
+  margin-top: 30px;
 }
+
+ #candy{
+     margin-bottom:2%;
+ }
 </style>

@@ -1,0 +1,60 @@
+// Home.vue
+
+<template>
+    <div id="home">
+        <router-link :to="{path: '/room/' + getRoomID()}"><el-button id="createRoom" type="primary">Create room</el-button></router-link><br/>
+        <router-link to="/room"><el-button id="joinRoom" type="primary">Join room</el-button></router-link>
+    </div>
+</template>
+
+<script>
+import io from "socket.io-client"
+var socket = io("http://localhost:3000");
+export default {
+  methods:{
+      getRoomID(){
+         createRoom();
+         return 'CANDY' ;
+      }
+  },
+  mounted(){
+    socket.on('createRoom', (data) => {
+        console.log(data);
+    });
+  }
+    
+}
+</script>
+
+<style>
+ #home{
+     margin-top: 5%;
+ }
+
+ #joinRoom{
+    margin:1%;
+    background-color: #FCB9B5; 
+    border:0;
+    border-radius:15px;
+    width:20%;
+ }
+
+ #createRoom{
+    margin:1%;
+    background-color: #FCB9B5; 
+    border:0;
+    border-radius:15px;
+    width:20%;
+ }
+ 
+ #joinRoom:active{
+  background-color:#FF96BC;
+  transform: scale(0.9, 0.9);
+ }
+
+ #createRoom:active{
+  background-color:#FF96BC;
+  transform: scale(0.9, 0.9);
+ }
+
+</style>

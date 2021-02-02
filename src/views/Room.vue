@@ -2,7 +2,7 @@
   <div id="room">
     <el-row>
         <el-col :span="24">
-            <h2>Room ID: {{roomID}}</h2><br/>
+            <h2>Room ID: {{room.roomID}}</h2><br/>
         </el-col>
     </el-row>
     <el-row>
@@ -12,7 +12,7 @@
     </el-row>
     <el-row>
         <el-col :span="24">
-            <Video v-bind:videoId="videoCode"/>
+            <Video v-bind:videoId="room.videoCode"/>
         </el-col>
     </el-row>
   </div>
@@ -21,17 +21,11 @@
 <script>
 import SearchBar from "@/components/SearchBar";
 import Video from "@/components/Video";
-
+ // import io from "socket.io-client"
+ // var socket = io("http://localhost:3000");
 export default {
+
   name: 'Room',
-  props:{
-      roomID:{
-          type:String,
-          required:true
-
-      }
-  },
-
   components:{
       Video,
       SearchBar
@@ -39,14 +33,26 @@ export default {
 
   data(){
     return{
-       videoCode: 'GMIQ8ZWRQXo',
+       room : {
+        videoCode: 'GMIQ8ZWRQXo',
+        roomID: this.$route.params.id,
+      }
     }
   },
 
   methods:{
-    setCode (value) {
-      console.log(value)
-      this.videoCode = value
+      setCode(value){
+          this.room.videoCode = value;
+      }
+
+  },
+
+  created(){
+  },
+
+  watch: {
+    '$route': function() {
+      this.room.roomID = this.$route.params.id;
     }
   }
 }
