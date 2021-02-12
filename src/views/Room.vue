@@ -1,6 +1,6 @@
 <template>
   <div id="room">
-      <div id="room_content">
+      <div v-if="room.exists" id="room_content">
         <el-row>
             <el-col :span="24">
                 <h2>Room ID: {{room.roomID}}</h2><br/>
@@ -17,6 +17,11 @@
             </el-col>
         </el-row>
       </div>
+
+      <div v-else>
+          <h2> Room not found </h2>
+      </div>
+
   </div>
 </template>
 
@@ -38,6 +43,7 @@ export default {
        room : {
         videoCode: 'GMIQ8ZWRQXo',
         roomID: this.$route.params.id,
+        exists: false,
       }
     }
   },
@@ -46,23 +52,25 @@ export default {
       setCode(value){
           this.room.videoCode = value;
       },
-      getRoom(){
-          return fetch('http://localhost:3000/get_room/' + this.room.roomID)
-              .then(response => {
-                  if(response.status !== 200){
-                      return "Room not found"
-                  }
-                  else{
-                      return response.json()
-                  }
-              }).then(data => {return data})
-      },
+      roomExists(){
+          fetch("http://localhost:3000/get_room/" + this.$route.params.id)
+          .then(response => {
+              if(response.status === 200){
+                  this.room.exists = true;
+              }
+              else
+                  this.room.exists = false;
+          })
+      }
   },
   watch: {
     '$route': function() {
       this.room.roomID = this.$route.params.id;
-      console.log(this.getRoom())
+      this.roomExists();
     }
+  },
+  created(){
+      this.roomExists();
   }
 }
 </script>
