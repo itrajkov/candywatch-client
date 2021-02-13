@@ -13,7 +13,7 @@
         </el-row>
         <el-row>
             <el-col :span="24">
-                <Video v-bind:videoId="room.videoCode"/>
+                <Video @pause_video="pauseVideo" @play_video="playVideo" v-bind:videoId="room.videoCode" :bus="bus"/>
             </el-col>
         </el-row>
       </div>
@@ -26,25 +26,27 @@
 </template>
 
 <script>
+import Vue from "vue";
 import SearchBar from "@/components/SearchBar";
 import Video from "@/components/Video";
- // import io from "socket.io-client"
- // var socket = io("http://localhost:3000");
+import io from "socket.io-client"
+const socket = io("http://localhost:3000");
 export default {
 
-  name: 'Room',
-  components:{
-      Video,
-      SearchBar
-  },
+name: 'Room',
+components:{
+    Video,
+    SearchBar
+},
 
-  data(){
-    return{
-       room : {
+data(){
+  return{
+      room : {
         videoCode: 'GMIQ8ZWRQXo',
         roomID: this.$route.params.id,
         exists: false,
-      }
+       },
+      bus: new Vue(),
     }
   },
 
@@ -52,8 +54,8 @@ export default {
       setCode(value){
           this.room.videoCode = value;
       },
-      roomExists(){
-          fetch("http://localhost:3000/get_room/" + this.$route.params.id)
+      setRoomExists(){
+          fetch("http://localhost:3000/room_exists/" + this.$route.params.id)
           .then(response => {
               if(response.status === 200){
                   this.room.exists = true;
@@ -61,16 +63,29 @@ export default {
               else
                   this.room.exists = false;
           })
+      },
+      playVideo(){
+          socket.emit("play_video", this.room.roomID);
+      },
+      pauseVideo(){
+          socket.emit("pause_video", this.room.roomID);
       }
   },
   watch: {
     '$route': function() {
       this.room.roomID = this.$route.params.id;
-      this.roomExists();
+      this.setRoomExists();
     }
   },
   created(){
-      this.roomExists();
+      this.setRoomExists();
+      socket.emit("joined_room", this.room.roomID);
+      socket.on("_play_video", () =>{
+          this.bus.$emit("play-video");
+      });
+      socket.on("_pause_video", () =>{
+          this.bus.$emit("pause-video");
+      });
   }
 }
 </script>

@@ -11,7 +11,7 @@
     <div id="media-bar">
     <el-row>
       <el-col :span="2">
-        <el-button @click="playVideo" id="play" type="success" v-bind:icon="buttonIcon" circle></el-button>
+        <el-button @click="playPause" id="play" type="success" v-bind:icon="buttonIcon" circle></el-button>
       </el-col>
       <el-col :span="22">
         <el-slider @change="seekTo" :format-tooltip="formatToolTip" v-bind:max="vidDuration" id="slider" v-model="vidTime"></el-slider>
@@ -32,6 +32,7 @@ export default {
         default: 'GMIQ8ZWRQXo',
         required: true,
     },
+    bus:{},
   },
      
   components:{
@@ -50,21 +51,24 @@ export default {
         this.player.seekTo(val);
     },
       
-    playVideo() {
+    // FUNCTION TO SWITCH FROM PLAY TO PAUSE AND VICE VERSA
+    playPause() {
       if (this.isPlaying)
-        this.player.pauseVideo();
+        this.$emit('pause_video')
       else
-        this.player.playVideo();
+        this.$emit('play_video')
     },
 
+    // THIS IS RUNS IF THE VIDEO IS PLAYING
     playing() {
-        console.log("playing");
+        this.player.playVideo();
         this.buttonIcon = 'el-icon-video-pause';
         this.isPlaying = true;
     },
 
+    // THIS IS RUNS IF THE VIDEO IS PLAYING
     paused() {
-        console.log("pause");
+        this.player.pauseVideo();
         this.buttonIcon = 'el-icon-video-play';
         this.isPlaying = false;
     },
@@ -100,6 +104,10 @@ export default {
       player() {
         return this.$refs.youtube.player;
       }
+  },
+  mounted(){
+      this.bus.$on('play-video', this.playing);
+      this.bus.$on('pause-video', this.paused);
   }
 }
 
