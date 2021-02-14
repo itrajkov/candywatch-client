@@ -41,35 +41,33 @@ export default {
 }
 
 #joinRoom {
-  -webkit-tap-highlight-color: transparent;
   font-family: "Pacifico", cursive;
   font-size: 30px;
-  margin-top: 20px;
+  margin: 1%;
   background-color: #f74040;
   border: 0;
   border-radius: 15px;
-  width: 300px;
+  width: 15%;
 }
 
 #createRoom {
-  -webkit-tap-highlight-color: transparent;
   font-family: "Pacifico", cursive;
   font-size: 30px;
-  margin-top: 20px;
+  margin-top: 5%;
   background-color: #f74040;
   border: 0;
   border-radius: 15px;
-  width: 300px;
+  width: 15%;
 }
 
 #joinRoom:active {
   background-color: #ce373c;
-  width: 250px;
+  width: 20%;
 }
 
 #createRoom:active {
   background-color: #ce373c;
-  width: 250px;
+  width: 20%;
 }
 
 @-webkit-keyframes bounceIn {
@@ -174,11 +172,5 @@ export default {
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-}
-
-@media only screen and (max-width: 768px) {
-  #title {
-    font-size: 60px;
-  }
 }
 </style>

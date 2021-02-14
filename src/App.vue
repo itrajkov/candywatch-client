@@ -1,30 +1,23 @@
 <template>
   <div id="app">
-      <Candy id="candy"/>
-      <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Candy from "@/components/Candy";
- export default {
-  name: 'App',
-  data(){
-    return{
-    }
+export default {
+  name: "App",
+  data() {
+    return {};
   },
-  components:{
-      Candy
-  },
-}
-
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-body{
-  background-color: #A0E7E5;
-  font-family: 'Roboto', sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
+body {
+  background-color: #a0e7e5;
+  font-family: "Roboto", sans-serif;
 }
 
 #app {
@@ -35,8 +28,4 @@ body{
   color: #2c3e50;
   margin-top: 30px;
 }
-
- #candy{
-     margin-bottom:2%;
- }
 </style>

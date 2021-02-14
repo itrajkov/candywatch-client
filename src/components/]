@@ -41,20 +41,23 @@ export default {
 }
 
 #playVid {
-  background-color: #b4f8c8;
-  border: 0;
+  background-color: #f74040;
+  color: #ffffff;
+  border: 2px solid #ffffff;
   border-radius: 20px;
 }
 
 #playVid:hover {
-  background-color: #b4f098;
+  background-color: #f74040;
+  color: #ffffff;
   border: 0;
   border-radius: 20px;
 }
 
 #playVid:active {
   transform: scale(0.7);
-  background-color: #b4f098;
+  background-color: #f74040;
+  color: #ffffff;
   border: 0;
   border-radius: 20px;
 }
@@ -64,6 +67,6 @@ export default {
   border: 0;
   text-align: center;
   border-radius: 20px;
-  background-color: #fbe7c6;
+  background-color: #ffffff;
 }
 </style>
