@@ -125,8 +125,8 @@ export default {
 iframe {
   margin-top: 1%;
   border: solid #ffaebc 25px;
-  width: 60%;
-  height: 600px;
+  width: 50%;
+  height: 400px;
   border-radius: 25px;
 }
 
