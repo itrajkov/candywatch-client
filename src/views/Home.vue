@@ -15,10 +15,11 @@
 
 <script>
 import Candy from "@/components/Candy";
+var config = require("../../api_config.json");
 export default {
   methods: {
     createRoom() {
-      fetch("http://localhost:3000/create_room")
+      fetch(config.API_URL + "/create_room")
         .then((response) => response.json())
         .then((data) => this.$router.push("/room/" + data.roomID));
     },
@@ -29,8 +30,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+body {
+  margin-top: 30px;
+}
 
 #title {
   user-select: none;

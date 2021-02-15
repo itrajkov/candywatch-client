@@ -14,10 +14,8 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 body {
   background-color: #a0e7e5;
-  font-family: "Roboto", sans-serif;
 }
 
 #app {
@@ -26,6 +24,5 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 30px;
 }
 </style>

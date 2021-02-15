@@ -3,9 +3,18 @@
     <div v-if="room.exists" id="room_content">
       <el-row>
         <el-col :span="24">
-          <h2>Room ID: {{room.roomID}}</h2>
-
-          <br />
+          <div id="roomID">
+            <el-button
+              v-clipboard:copy="room.roomID"
+              v-clipboard:success="onCopy"
+              id="copy"
+              icon="el-icon-copy-document"
+              round
+            ></el-button>
+            <h2>{{room.roomID}}</h2>
+            <!-- <img id="copy" src="../assets/copy.png" alt /> -->
+            <br />
+          </div>
         </el-col>
       </el-row>
       <el-row>
@@ -37,7 +46,8 @@ import Vue from "vue";
 import SearchBar from "@/components/SearchBar";
 import Video from "@/components/Video";
 import io from "socket.io-client";
-const socket = io("http://localhost:3000");
+var config = require("../../api_config.json");
+const socket = io(config.API_URL);
 export default {
   name: "Room",
   components: {
@@ -51,14 +61,27 @@ export default {
         videoCode: "GMIQ8ZWRQXo",
         roomID: this.$route.params.id,
         exists: false,
+        center: false,
       },
       bus: new Vue(),
     };
   },
 
   methods: {
+    onCopy() {
+      this.$notify.success({
+        dangerouslyUseHTMLString: true,
+        title: "Copied!",
+        duration: 500,
+      });
+      // this.$message({
+      //   message: "Congrats, this is a success message.",
+      //   type: "success",
+      //   showClose: true,
+      // });
+    },
     setRoomExists() {
-      fetch("http://localhost:3000/room_exists/" + this.$route.params.id).then(
+      fetch(config.API_URL + "/room_exists/" + this.$route.params.id).then(
         (response) => {
           if (response.status === 200) {
             this.room.exists = true;
@@ -105,12 +128,46 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 h2 {
-  background-color: #b4f8c8;
-  color: #85d2d0;
+  font-family: "Noto Sans JP", sans-serif;
+  color: #ffffff;
+  display: inline-block;
+  padding: 0px 10px;
+}
+
+#roomID {
+  background-color: #f74040;
+  border: 3px solid white;
   border-radius: 15px;
-  margin: 0px 25%;
-  padding: 3px;
+  padding: 0px 25px;
+  display: inline-block;
+  margin: 20px;
+}
+
+#copy {
+  float: right;
+  margin-top: 20px;
+  transform: scale(1, 1);
+  border: 0;
+  color: #f74040;
+}
+
+#copy:hover {
+  background-color: #ffffff;
+  border: 0;
+  color: #f74040;
+}
+
+#copy:active {
+  background-color: #ffaebc;
+  transform: scale(0.8, 0.8);
+  border: 0;
+  color: #f74040;
+}
+
+.popup {
+  padding: 20%;
+  background-color: white;
 }
 </style>
-

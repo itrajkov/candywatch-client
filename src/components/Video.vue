@@ -118,13 +118,23 @@ export default {
 </script>
 
 <style>
+#slider .el-slider__button {
+  border: 2px solid white;
+  background-color: #f74040;
+}
+
+#slider .el-slider__bar {
+  background-color: #a0e7e5;
+}
 #slider {
-  padding-right: 2%;
-  padding-left: 2%;
+  padding-right: 20px;
+  padding-left: 20px;
   margin-left: 5px;
-  background-color: #ffaebc;
-  border-radius: 10px;
-  width: 50%;
+  background-color: #f74040;
+  border-radius: 20px;
+  /* width: 50%; */
+  width: 600px;
+  border: 3px solid white;
 }
 
 #media-bar {
@@ -135,26 +145,27 @@ export default {
 
 iframe {
   margin-top: 1%;
-  border: solid #ffaebc 25px;
+  border: solid #f74040 20px;
   width: 50%;
   height: 400px;
   border-radius: 25px;
+  /* border: 3px solid #ffffff; */
 }
 
 #play {
-  background-color: #ffaebc;
+  background-color: #f74040;
   transform: scale(1.1, 1.1);
-  border: 0;
+  border: 3px solid #ffffff;
 }
 
 #play:hover {
-  background-color: #ff96bc;
-  border: 0;
+  background-color: #f74040;
+  border: 3px solid #ffffff;
 }
 
 #play:active {
-  background-color: #ff96bc;
+  background-color: #f74040;
   transform: scale(0.8, 0.8);
-  border: 0;
+  border: 3px solid #ffffff;
 }
 </style>
