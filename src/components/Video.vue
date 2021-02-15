@@ -70,7 +70,10 @@ export default {
     skipVideo(timestamp) {
       this.vidTime = timestamp;
       this.player.seekTo(timestamp);
-      // this.setCurrentTime();
+    },
+
+    setVideo(vidCode) {
+      this.videoId = vidCode;
     },
 
     setCurrentTime() {
@@ -109,6 +112,7 @@ export default {
     this.bus.$on("play-video", this.playing);
     this.bus.$on("pause-video", this.paused);
     this.bus.$on("skip-video", this.skipVideo);
+    this.bus.$on("set-video", this.setVideo);
   },
 };
 </script>

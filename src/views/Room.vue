@@ -57,9 +57,6 @@ export default {
   },
 
   methods: {
-    setCode(value) {
-      this.room.videoCode = value;
-    },
     setRoomExists() {
       fetch("http://localhost:3000/room_exists/" + this.$route.params.id).then(
         (response) => {
@@ -77,6 +74,9 @@ export default {
     },
     skipVideo(timestamp) {
       socket.emit("skip_video", this.room.roomID, timestamp);
+    },
+    setCode(vidCode) {
+      socket.emit("set_video", this.room.roomID, vidCode);
     },
   },
   watch: {
@@ -96,6 +96,9 @@ export default {
     });
     socket.on("_skip_video", (timestamp) => {
       this.bus.$emit("skip-video", timestamp);
+    });
+    socket.on("_set_video", (vidCode) => {
+      this.bus.$emit("set-video", vidCode);
     });
   },
 };
