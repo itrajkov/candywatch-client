@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/candy.png" />
+    <img draggable="false" src="../assets/candy.png" />
   </div>
 </template>
 
