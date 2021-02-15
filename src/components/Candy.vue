@@ -14,6 +14,8 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
 img {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   width: 150px;
   animation: rotation 1.5s infinite linear;
 }

@@ -33,6 +33,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 #title {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   margin: 0;
   font-family: "Pacifico", cursive;
   font-size: 90px;
@@ -41,6 +43,7 @@ export default {
 }
 
 #joinRoom {
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Pacifico", cursive;
   font-size: 30px;
@@ -52,6 +55,7 @@ export default {
 }
 
 #createRoom {
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Pacifico", cursive;
   font-size: 30px;
@@ -178,6 +182,7 @@ export default {
 
 @media only screen and (max-width: 768px) {
   #title {
+    user-select: none;
     font-size: 60px;
   }
 }
