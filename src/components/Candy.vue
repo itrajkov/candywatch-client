@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/candy.png" />
+    <img draggable="false" src="../assets/candy.png" />
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
 img {
+  user-select: none;
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
   width: 150px;

@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     seekTo(val) {
-      this.player.seekTo(val);
+      this.$emit("skip_video", val);
     },
 
     // FUNCTION TO SWITCH FROM PLAY TO PAUSE AND VICE VERSA
@@ -65,6 +65,12 @@ export default {
       this.player.pauseVideo();
       this.buttonIcon = "el-icon-video-play";
       this.isPlaying = false;
+    },
+
+    skipVideo(timestamp) {
+      this.vidTime = timestamp;
+      this.player.seekTo(timestamp);
+      // this.setCurrentTime();
     },
 
     setCurrentTime() {
@@ -102,6 +108,7 @@ export default {
   mounted() {
     this.bus.$on("play-video", this.playing);
     this.bus.$on("pause-video", this.paused);
+    this.bus.$on("skip-video", this.skipVideo);
   },
 };
 </script>

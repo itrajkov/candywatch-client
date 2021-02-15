@@ -35,6 +35,7 @@ export default {
 #title {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
   margin: 0;
   font-family: "Pacifico", cursive;
   font-size: 90px;
@@ -56,6 +57,7 @@ export default {
 
 #createRoom {
   user-select: none;
+  -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Pacifico", cursive;
   font-size: 30px;
