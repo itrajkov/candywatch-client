@@ -1,40 +1,36 @@
 <template>
   <div id="room">
     <div v-if="room.exists" id="room_content">
-      <el-row>
-        <el-col :span="24">
+      <div id="header">
+        <SearchBar id="searchbar" @clicked="setCode" />
+      </div>
+
+      <div id="main">
+        <div id="main-left"></div>
+
+        <Video
+          id="iframe"
+          @skip_video="skipVideo"
+          @pause_video="pauseVideo"
+          @play_video="playVideo"
+          v-bind:videoId="room.videoCode"
+          :bus="bus"
+        />
+
+        <div id="main-right">
           <div id="roomID">
             <el-button
-              v-clipboard:copy="room.roomID"
+              v-clipboard:copy="getRoomID()"
               v-clipboard:success="onCopy"
               id="copy"
               icon="el-icon-copy-document"
               round
             ></el-button>
             <h2>{{room.roomID}}</h2>
-            <!-- <img id="copy" src="../assets/copy.png" alt /> -->
-            <br />
           </div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="24">
-          <SearchBar @clicked="setCode" />
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="24">
-          <Video
-            @skip_video="skipVideo"
-            @pause_video="pauseVideo"
-            @play_video="playVideo"
-            v-bind:videoId="room.videoCode"
-            :bus="bus"
-          />
-        </el-col>
-      </el-row>
+        </div>
+      </div>
     </div>
-
     <div v-else>
       <h2>Room not found</h2>
     </div>
@@ -64,6 +60,7 @@ export default {
         center: false,
       },
       bus: new Vue(),
+      mainkey: 0,
     };
   },
 
@@ -101,6 +98,9 @@ export default {
     setCode(vidCode) {
       socket.emit("set_video", this.room.roomID, vidCode);
     },
+    getRoomID() {
+      return "https://candywatch.net/room/" + this.room.roomID;
+    },
   },
   watch: {
     $route: function () {
@@ -127,30 +127,72 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+
 h2 {
   font-family: "Noto Sans JP", sans-serif;
   color: #ffffff;
-  display: inline-block;
-  padding: 0px 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#iframe {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  flex-grow: 2;
+  flex-basis: 66%;
+}
+
+#main {
+  display: flex;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+}
+
+#searchbar {
+  display: inline-flex;
+  width: 50%;
+  margin: 30px;
 }
 
 #roomID {
+  display: inline-flex;
   background-color: #f74040;
   border: 3px solid white;
   border-radius: 15px;
-  padding: 0px 25px;
-  display: inline-block;
-  margin: 20px;
+}
+
+#main-right {
+  flex-grow: 1;
+  flex-basis: 33%;
+  justify-content: center;
+  display: flex;
+  align-items: flex-start;
+}
+#main-left {
+  flex-grow: 1;
+  flex-basis: 33%;
+}
+
+#footer {
+  flex-grow: 1;
 }
 
 #copy {
-  float: right;
-  margin-top: 20px;
   transform: scale(1, 1);
+  margin: 10px;
   border: 0;
   color: #f74040;
+  margin: auto;
+  margin-left: 10px;
 }
 
 #copy:hover {

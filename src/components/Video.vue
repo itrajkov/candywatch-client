@@ -1,14 +1,18 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="24">
-        <youtube :video-id="videoId" ref="youtube" @playing="playing" @paused="paused"></youtube>
-        <br />
-      </el-col>
-    </el-row>
+    <div id="iframeDiv">
+      <youtube
+        :player-vars="playerVars"
+        :video-id="vidCode"
+        :resize="true"
+        ref="youtube"
+        @playing="playing"
+        @paused="paused"
+      ></youtube>
+    </div>
 
     <div id="media-bar">
-      <el-button @click="playPause" id="play" type="success" v-bind:icon="buttonIcon" circle></el-button>
+      <el-button @click="playPause()" id="play" type="success" v-bind:icon="buttonIcon" circle></el-button>
       <el-slider
         @change="seekTo"
         :format-tooltip="formatToolTip"
@@ -20,7 +24,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 export default {
   name: "Video",
 
@@ -40,6 +44,11 @@ export default {
       vidTime: 0,
       isPlaying: false,
       vidDuration: 0,
+      vidCode: this.videoId,
+      playerVars: {
+        controls: 0,
+        disablekb: 1,
+      },
     };
   },
   methods: {
@@ -73,7 +82,7 @@ export default {
     },
 
     setVideo(vidCode) {
-      this.videoId = vidCode;
+      this.vidCode = vidCode;
     },
 
     setCurrentTime() {
@@ -132,24 +141,22 @@ export default {
   margin-left: 5px;
   background-color: #f74040;
   border-radius: 20px;
-  /* width: 50%; */
-  width: 600px;
+  width: 100%;
   border: 3px solid white;
 }
 
 #media-bar {
   display: flex;
   justify-content: center;
-  margin-top: 1%;
+  margin-top: 30px;
 }
 
 iframe {
-  margin-top: 1%;
   border: solid #f74040 20px;
-  width: 50%;
-  height: 400px;
   border-radius: 25px;
   /* border: 3px solid #ffffff; */
+  width: 100%;
+  display: inline-block;
 }
 
 #play {
@@ -160,12 +167,16 @@ iframe {
 
 #play:hover {
   background-color: #f74040;
-  border: 3px solid #ffffff;
 }
 
 #play:active {
   background-color: #f74040;
   transform: scale(0.8, 0.8);
   border: 3px solid #ffffff;
+}
+
+#iframeDiv {
+  display: flex;
+  justify-content: center;
 }
 </style>
