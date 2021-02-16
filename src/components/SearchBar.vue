@@ -42,7 +42,6 @@ export default {
 #playVid:hover {
   background-color: #f74040;
   border: 2px solid white;
-  border: 0;
   border-radius: 20px;
   color: white;
 }
