@@ -159,15 +159,18 @@ h2 {
 
 #searchbar {
   display: inline-flex;
-  width: 50%;
+  width: 55%;
   margin: 30px;
 }
 
 #roomID {
+  width: auto;
   display: inline-flex;
   background-color: #f74040;
   border: 3px solid white;
   border-radius: 15px;
+  flex-wrap: wrap;
+  margin: 10%;
 }
 
 #main-right {
@@ -182,26 +185,33 @@ h2 {
   flex-basis: 33%;
 }
 
-#footer {
-  flex-grow: 1;
+#searchbar {
+  width: 55%;
 }
 
 #copy {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   transform: scale(1, 1);
   margin: 10px;
   border: 0;
   color: #f74040;
-  margin: auto;
-  margin-left: 10px;
 }
 
 #copy:hover {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   background-color: #ffffff;
   border: 0;
   color: #f74040;
 }
 
 #copy:active {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   background-color: #ffaebc;
   transform: scale(0.8, 0.8);
   border: 0;
@@ -211,5 +221,18 @@ h2 {
 .popup {
   padding: 20%;
   background-color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  #main {
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+  }
+  #main-right {
+    align-items: center;
+  }
+  #searchbar {
+    width: 85%;
+  }
 }
 </style>

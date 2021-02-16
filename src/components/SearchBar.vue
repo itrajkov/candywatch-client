@@ -33,6 +33,9 @@ export default {
 }
 
 #playVid {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   background-color: #f74040;
   border: 2px solid white;
   border-radius: 20px;
@@ -40,6 +43,9 @@ export default {
 }
 
 #playVid:hover {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   background-color: #f74040;
   border: 2px solid white;
   border-radius: 20px;
@@ -47,6 +53,9 @@ export default {
 }
 
 #playVid:active {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   transform: scale(0.7);
   background-color: #f74040;
   border: 2px solid white;

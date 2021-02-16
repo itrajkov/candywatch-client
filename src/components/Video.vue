@@ -160,6 +160,9 @@ iframe {
 }
 
 #play {
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
   background-color: #f74040;
   transform: scale(1.1, 1.1);
   border: 3px solid #ffffff;
