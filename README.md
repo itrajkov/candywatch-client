@@ -19,6 +19,7 @@ This project is in the very early stages of development.
 There are a few bugs that I am aware exist, and some features are not implemented, keep in mind that this is still a WIP.
 
 # Setting up the development environment
+**Node version:** v16.20.2
 ```bash
 $ git clone https://github.com/itrajkov/candywatch-client.git
 $ cd candywatch-client
